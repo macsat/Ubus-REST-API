@@ -31,6 +31,16 @@ insert_query="INSERT INTO trips VALUES (?,?,?,?)"
 cursor.execute(insert_query,trip)
 print("trip tunis-medenine created")
 
+trip=(2,'gafsa','tunis',20)
+insert_query="INSERT INTO trips VALUES (?,?,?,?)"
+cursor.execute(insert_query,trip)
+print("trip tunis-medenine created")
+
+trip=(3,'chicha land','anywhere',0)
+insert_query="INSERT INTO trips VALUES (?,?,?,?)"
+cursor.execute(insert_query,trip)
+print("trip tunis-medenine created")
+
 
 
 connection.commit()
