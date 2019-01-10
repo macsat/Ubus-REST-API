@@ -36,7 +36,6 @@ class User:
         
         query = "SELECT * FROM users WHERE id=?"
         result=cursor.execute(query,(_id,))
-        print(result)
         row = result.fetchone()
         if row:
             user = cls(*row)
@@ -61,5 +60,4 @@ class UserRegister(Resource):
         cursor.execute(query,(data['username'],data['password']))
         connection.commit()
         connection.close()
-        print(user)
         return {"message": "user created successfully"}, 201
