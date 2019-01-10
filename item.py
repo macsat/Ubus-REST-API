@@ -9,15 +9,15 @@ class Item(Resource):
     def get(self,name):
         connection=sqlite3.connect("data.db")
         cursor=connection.cursor()
+
         query="SELECT * FROM trips WHERE deperture_station=?" #OR arrival_station LIKE=?
         result=cursor.execute(query,(name,))
         row=result.fetchone()
         connection.close()
+        
         if row:
             return {"trip":{"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}
         return {"message":"no trips for this place"},404
-        #item=next(filter(lambda x: x['name']==name,items),None)
-        #return {'item': item},200 if ( item )  else 404
     
     def post(self,name):
         if next(filter(lambda x: x['name']==name,items),None) is not None:

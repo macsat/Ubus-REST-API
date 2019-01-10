@@ -15,6 +15,7 @@ class User:
     
     @classmethod
     def find_by_username(cls,username):
+        print("calling find by name")
         connection=sqlite3.connect('data.db')
         cursor = connection.cursor()
         query = "SELECT * FROM users WHERE username=?"
@@ -29,11 +30,13 @@ class User:
         return user
     @classmethod
     def find_by_id(cls, _id):
+        print("calling find by id")
         connection=sqlite3.connect('data.db')
         cursor = connection.cursor()
         
         query = "SELECT * FROM users WHERE id=?"
         result=cursor.execute(query,(_id,))
+        print(result)
         row = result.fetchone()
         if row:
             user = cls(*row)
@@ -58,5 +61,5 @@ class UserRegister(Resource):
         cursor.execute(query,(data['username'],data['password']))
         connection.commit()
         connection.close()
-
+        print(user)
         return {"message": "user created successfully"}, 201
