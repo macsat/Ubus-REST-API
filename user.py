@@ -51,6 +51,8 @@ class UserRegister(Resource):
     parser.add_argument('password',type=str,required=True,help="this field must be filled")
     def post(self):
         data=UserRegister.parser.parse_args()
+        print(data)
+        print(type(data))
         if User.find_by_username(data["username"]):
             return {"message":"username already exists please choose another username"},400
         connection=sqlite3.connect('data.db')
