@@ -7,18 +7,19 @@ Created on Mon Dec 24 13:16:21 2018
 """
 from werkzeug.security import safe_str_cmp
 from user import User
-
+from passlib.hash import pbkdf2_sha256
 
 def authenticate(username,password):
     user=User.find_by_username(username)
-    print("/////////////////////////////////////////////")
-    print('zebi zebi authentication fel zebi')
-    print(user)
-    print('/////////////////////////////////////////////')
-    if user and safe_str_cmp(user.password,password):
-        return user
-    else :
-    	return { "message":"3asba triya"}
+    print("//////////////////////////////")
+    print('Authenticating user : ')
+    print(username)
+    print('//////////////////////////////')
+    if user and pbkdf2_sha256.verify(password,user.password):
+    	return user
+    #if user and safe_str_cmp(user.password,password):
+    #	return user
+
 def identity(payload):
     user_id=payload['identity']
     return User.find_by_id(user_id)

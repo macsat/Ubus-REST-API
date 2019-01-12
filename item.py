@@ -38,7 +38,8 @@ class Item(Resource):
         else:
             item.update(request_data)
         return item
-class ItemList(Resource):
-    
+class ItemList(Resource):  
     def get(self):
         return {'items':items}
+
+        

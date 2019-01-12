@@ -6,6 +6,7 @@ Created on Mon Dec 24 13:37:13 2018
 """
 import sqlite3
 from flask_restful import Resource, reqparse
+from passlib.hash import pbkdf2_sha256
 
 class User:
     def __init__(self,_id,username,password):
@@ -50,16 +51,19 @@ class UserRegister(Resource):
     parser.add_argument('username',type=str,required=True,help="this field must be filled")
     parser.add_argument('password',type=str,required=True,help="this field must be filled")
     def post(self):
+
         data=UserRegister.parser.parse_args()
         print(data)
         print(type(data))
         if User.find_by_username(data["username"]):
-            return {"message":"username already exists please choose another username"},400
+            return {"message":"username already exists please choose another username"},401
         connection=sqlite3.connect('data.db')
         cursor = connection.cursor()
         
         query = "INSERT INTO users  VALUES (NULL, ?, ?)"
-        cursor.execute(query,(data['username'],data['password']))
+        hash = pbkdf2_sha256.hash(data["password"])
+        cursor.execute(query,(data['username'],hash))
         connection.commit()
         connection.close()
         return {"message": "user created successfully"}, 201
+        
