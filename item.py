@@ -1,6 +1,11 @@
 import sqlite3
 from flask_restful import Resource,reqparse
 from flask_jwt import jwt_required
+items=[{'name': 'tunis-medenine', 'price':23},
+      {'name': 'gabes-medenine', 'price':5},
+      {'name': 'sfax-medenine', 'price':10},
+      {'name': 'tunis-sousse', 'price':10}
+    ]
 class Item(Resource):
     parser=reqparse.RequestParser()
     parser.add_argument('price',type=float,required=True,help="this field can't be left blank")
@@ -42,4 +47,3 @@ class ItemList(Resource):
     def get(self):
         return {'items':items}
 
-        
