@@ -20,7 +20,7 @@ class Item(Resource):
         connection.close()
         
         if row:
-            return {"trip":{"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}
+            return {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}
         return {"message":"no trips for this place"},404
     
     def post(self,name):
