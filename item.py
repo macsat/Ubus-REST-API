@@ -10,7 +10,6 @@ class Item(Resource):
     parser=reqparse.RequestParser()
     parser.add_argument('price',type=float,required=True,help="this field can't be left blank")
     
-    @jwt_required()
     def get(self,name):
         connection=sqlite3.connect("data.db")
         cursor=connection.cursor()
