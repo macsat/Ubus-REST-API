@@ -21,7 +21,7 @@ class Item(Resource):
         connection.close()
         
         if row:
-            return {"trips":{{"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}},
+            return {"trips":{"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
                   {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}},
                   {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}},
                   {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}}}
