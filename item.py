@@ -19,12 +19,11 @@ class Item(Resource):
         result=cursor.execute(query,(name,))
         row=result.fetchone()
         connection.close()
-        
         if row:
             return {"trips": {"trip1":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
-                  "trip2":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
-                  "trip3":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
-                  "trip4":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}}
+                "trip2":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
+                "trip3":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
+                "trip4":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}}
         return {"message":"no trips for this place"},404
     
     def post(self,name):
