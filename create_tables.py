@@ -34,6 +34,13 @@ print("tickets table created")
 trip=('tunis','medenine',23)
 insert_query="INSERT INTO trips VALUES (NULL,?,?,?)"
 cursor.execute(insert_query,trip)
+trip=('tunis','monastir',10)
+insert_query="INSERT INTO trips VALUES (NULL,?,?,?)"
+cursor.execute(insert_query,trip)
+trip=('tunis','gafsa',20)
+insert_query="INSERT INTO trips VALUES (NULL,?,?,?)"
+cursor.execute(insert_query,trip)
+
 print("trip tunis-medenine created")
 
 trip=('gafsa','tunis',20)
