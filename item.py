@@ -9,8 +9,7 @@ items=[{'name': 'tunis-termet fawzi', 'price':23},
 class Item(Resource):
     parser=reqparse.RequestParser()
     parser.add_argument('price',type=float,required=True,help="this field can't be left blank")
-    
-    @jwt_required()
+    #@jwt_required()
     def get(self,name):
         connection=sqlite3.connect("data.db")
         cursor=connection.cursor()
@@ -19,11 +18,12 @@ class Item(Resource):
         result=cursor.execute(query,(name,))
         row=result.fetchone()
         connection.close()
-        
         if row:
-            return {"trip":{"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}
+            return {"trips": [{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
+                {"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
+                {"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]},
+                {"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}]}
         return {"message":"no trips for this place"},404
-    
     def post(self,name):
         if next(filter(lambda x: x['name']==name,items),None) is not None:
             return {'message':"item with name '{}' already exists".format(name)},400

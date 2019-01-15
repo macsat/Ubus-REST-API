@@ -51,7 +51,6 @@ class UserRegister(Resource):
     parser.add_argument('username',type=str,required=True,help="this field must be filled")
     parser.add_argument('password',type=str,required=True,help="this field must be filled")
     def post(self):
-
         data=UserRegister.parser.parse_args()
         print(data)
         print(type(data))
@@ -66,4 +65,4 @@ class UserRegister(Resource):
         connection.commit()
         connection.close()
         return {"message": "user created successfully"}, 201
-        
+

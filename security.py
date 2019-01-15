@@ -20,6 +20,10 @@ def authenticate(username,password):
     #if user and safe_str_cmp(user.password,password):
     #	return user
 
+# def identity(payload):
+#     user_id=payload['identity']
+#     return User.find_by_id(user_id)
+
 def identity(payload):
-    user_id=payload['identity']
-    return User.find_by_id(user_id)
+    user_id = payload['identity']
+    return {"user_id": user_id}

@@ -13,15 +13,15 @@ cursor=connection.cursor()
 create_table="CREATE TABLE IF NOT EXISTS users (idU INTEGER PRIMARY KEY ,username text,password text)"
 cursor.execute(create_table)
 print("users table created")
-create_table="CREATE TABLE IF NOT EXISTS trips (idT INTEGER PRIMARY KEY,deperture_station text,arrival_station text,deperture_time time,arrival_time time,price INTEGER)"
+create_table="CREATE TABLE IF NOT EXISTS trips (idT INTEGER PRIMARY KEY,deperture_station text,arrival_station text,price INTEGER)"
 cursor.execute(create_table)
 print("trips table created")
-create_table="CREATE TABLE IF NOT EXISTS reservations (idR INTEGER PRIMARY KEY,idT INTEGER,idU INTEGER,reservation_time time,reservation_date time,nbr_seats INTEGER,CONSTRAINT fk_departments FOREIGN KEY (department_id) REFERENCES departments(department_id)"
+create_table="CREATE TABLE IF NOT EXISTS reservations (idR INTEGER PRIMARY KEY,idT INTEGER,idU INTEGER,quantity INTEGER,ticket_code INTEGER)"
 cursor.execute(create_table)
 print("reservations table created")
-create_table="CREATE TABLE IF NOT EXISTS tickets (idTK INTEGER PRIMARY KEY ,idU INTEGER,idR INTEGER,code text,state INTEGER)"
+create_table="CREATE TABLE IF NOT EXISTS tickets (idTK INTEGER PRIMARY KEY ,idU INTEGER,idT INTEGER, code text)"
 cursor.execute(create_table)
-print("users table created")
+print("tickets table created")
 # user1=(1,'mac','1234')
 # insert_query="INSERT INTO users VALUES (?,?,?)"
 # cursor.execute(insert_query,user1)
@@ -31,20 +31,20 @@ print("users table created")
 # cursor.execute(insert_query,user1)
 # print("user fawzi created")
 
-# trip=(1,'tunis','medenine',23)
-# insert_query="INSERT INTO trips VALUES (?,?,?,?)"
-# cursor.execute(insert_query,trip)
-# print("trip tunis-medenine created")
+trip=('tunis','medenine',23)
+insert_query="INSERT INTO trips VALUES (NULL,?,?,?)"
+cursor.execute(insert_query,trip)
+print("trip tunis-medenine created")
 
-# trip=(2,'gafsa','tunis',20)
-# insert_query="INSERT INTO trips VALUES (?,?,?,?)"
-# cursor.execute(insert_query,trip)
-# print("trip tunis-medenine created")
+trip=('gafsa','tunis',20)
+insert_query="INSERT INTO trips VALUES (NULL,?,?,?)"
+cursor.execute(insert_query,trip)
+print("trip tunis-medenine created")
 
-# trip=(3,'chicha land','anywhere',0)
-# insert_query="INSERT INTO trips VALUES (?,?,?,?)"
-# cursor.execute(insert_query,trip)
-# print("trip tunis-medenine created")
+trip=('chicha land','anywhere',0)
+insert_query="INSERT INTO trips VALUES (NULL,?,?,?)"
+cursor.execute(insert_query,trip)
+print("trip tunis-medenine created")
 
 
 
