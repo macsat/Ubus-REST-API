@@ -33,6 +33,7 @@ class PrivateResource(Resource):
     @jwt_required()
     def get(self):
         return dict(current_identity)
+        
 api.add_resource(PrivateResource,'/private')
 api.add_resource(Reservation,'/reserve')
 api.add_resource(Item,'/item/<string:name>')
