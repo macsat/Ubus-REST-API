@@ -13,7 +13,9 @@ cursor=connection.cursor()
 create_table="CREATE TABLE IF NOT EXISTS users (idU INTEGER PRIMARY KEY ,username text,password text)"
 cursor.execute(create_table)
 print("users table created")
-create_table="CREATE TABLE IF NOT EXISTS trips (idT INTEGER PRIMARY KEY,deperture_station text,arrival_station text,price INTEGER)"
+create_table="DROP TABLE IF EXISTS trips"
+cursor.execute(create_table)
+create_table="CREATE TABLE trips (idT INTEGER PRIMARY KEY,deperture_station text,arrival_station text,price INTEGER)"
 cursor.execute(create_table)
 print("trips table created")
 create_table="CREATE TABLE IF NOT EXISTS reservations (idR INTEGER PRIMARY KEY,idT INTEGER,idU INTEGER,quantity INTEGER,ticket_code INTEGER)"
