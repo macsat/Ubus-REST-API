@@ -24,9 +24,8 @@ class Item(Resource):
             return {"trips":{{"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}},
                   {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}},
                   {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}},
-                  {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}}
-        else :
-            return {"message":"no trips for this place"},404
+                  {"trip":{"id":row[0],"deperture_station":row[1] ,"arrival_station":row[2],"price":row[3]}}}}
+        return {"message":"no trips for this place"},404
     
     def post(self,name):
         if next(filter(lambda x: x['name']==name,items),None) is not None:
