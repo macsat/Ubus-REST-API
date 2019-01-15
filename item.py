@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3,json
 from flask_restful import Resource,reqparse
 from flask_jwt import jwt_required
 items=[{'name': 'tunis-termet fawzi', 'price':23},
@@ -18,8 +18,9 @@ class Item(Resource):
         result=cursor.execute(query,(name,))
         row=result.fetchall()
         connection.close()
-        if row:
-            return {"trips":row}
+        result = [{"id": x[0], "deperture_station": x[1], "arrival_station": x[2], "price": x[3]} for x in row]
+        if result:
+            return {"trips":result}
         return {"message":"no trips for this place"},404
     def post(self,name):
         if next(filter(lambda x: x['name']==name,items),None) is not None:
