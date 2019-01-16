@@ -21,7 +21,7 @@ print("trips table created")
 create_table="CREATE TABLE IF NOT EXISTS reservations (idR INTEGER PRIMARY KEY,idT INTEGER,idU INTEGER,quantity INTEGER,ticket_code INTEGER)"
 cursor.execute(create_table)
 print("reservations table created")
-create_table="CREATE TABLE IF NOT EXISTS tickets (idTK INTEGER PRIMARY KEY ,idU INTEGER,idT INTEGER, code text)"
+create_table="CREATE TABLE IF NOT EXISTS tickets (idTK INTEGER PRIMARY KEY ,idU INTEGER,idT INTEGER, code text,FOREIGN KEY (idT) REFERENCES trips(idT))"
 cursor.execute(create_table)
 print("tickets table created")
 # user1=(1,'mac','1234')

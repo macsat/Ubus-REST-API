@@ -40,11 +40,15 @@ class Reservation(Resource):
             query="SELECT * FROM tickets WHERE idU=?" #OR arrival_station LIKE=?
             result=cursor.execute(query,(user_id,))
             all_rows=result.fetchall()
+            output=[]
+            for i in all_rows:
+                query="SELECT * FROM trips WHERE idT=?" #OR arrival_station LIKE=?
+                result2=cursor.execute(query,(i[2],))
+                x=result2.fetchone()
+                result = [output,{"code": i[3], "deperture_station": x[1], "arrival_station": x[2], "price": x[3]}]
             connection.close()
         if all_rows:
-            print(type(all_rows))
-            print(all_rows)
-            return {"tickets":all_rows},200
+            return {"tickets":output},200
         return {"message":"You don't have any tickets please reserve one first"},404
 
     @jwt_required()
