@@ -46,7 +46,7 @@ class Reservation(Resource):
                 result2=cursor.execute(query,(i[2],))
                 x=result2.fetchone()
                 print(x)
-                output.append{"code": i[3], "deperture_station": x[1], "arrival_station": x[2], "price": x[3]}]
+                output.append({"code": i[3], "deperture_station": x[1], "arrival_station": x[2], "price": x[3]})
             connection.close()
         if all_rows:
             return {"tickets":output},200
