@@ -1,10 +1,10 @@
 import sqlite3,json
 from flask_restful import Resource,reqparse
 from flask_jwt import jwt_required
-items=[{'name': 'tunis-termet fawzi', 'price':23},
-      {'name': 'gabes-sourem fawzi', 'price':5},
-      {'name': 'sfax-nougbet fawzi', 'price':10},
-      {'name': 'tunis-ghoug fawzi', 'price':10}
+items=[{'name': 'tunis-medenine', 'price':23},
+      {'name': 'gabes-medenine', 'price':5},
+      {'name': 'sfax-medenine', 'price':10},
+      {'name': 'tunis-sousse', 'price':10}
     ]
 class Item(Resource):
     parser=reqparse.RequestParser()
